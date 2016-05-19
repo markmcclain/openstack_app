@@ -1,2 +1,2 @@
 # openstack_app
-Example OpenStack Application
+Example OpenStack Django Application
