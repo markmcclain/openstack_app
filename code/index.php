@@ -1,37 +1,28 @@
+<?
+function generatePassword($_len) {
+
+    $_alphaSmall = 'abcdefghijklmnopqrstuvwxyz';            // small letters
+    $_alphaCaps  = strtoupper($_alphaSmall);                // CAPITAL LETTERS
+    $_numerics   = '1234567890';                            // numerics
+    $_specialChars = '`~!@#$%^&*()-_=+]}[{;:,<.>/?\'"\|';   // Special Characters
+
+    $_container = $_alphaSmall.$_alphaCaps.$_numerics.$_specialChars;   // Contains all characters
+    $password = '';         // will contain the desired pass
+
+    for($i = 0; $i < $_len; $i++) {                                 // Loop till the length mentioned
+        $_rand = rand(0, strlen($_container) - 1);                  // Get Randomized Length
+        $password .= substr($_container, $_rand, 1);                // returns part of the string [ high tensile strength ;) ] 
+    }
+
+    return $password;       // Returns the generated Pass
+}
+
+?>
 <html>
 <head>
-<title>PHP test</title>
+<title>Make me a password...</title>
 </head>
 <body>
-<h1>Does PHP work?</h1>
-
-<?php echo "<h2>Yes, it does.  PHP Version " . phpversion() ."</h2>"; 
-  echo "<p>To run the WXGRAPHIC script, you need GD enabled in PHP.\n";
-  echo "<br />Current GD status:</p>\n";
-  echo describeGDdyn();
-  
-// Retrieve information about the currently installed GD library
-// script by phpnet at furp dot com (08-Dec-2004 06:59)
-//   from the PHP usernotes about gd_info
-function describeGDdyn() {
- echo "\n<ul><li>GD support: ";
- if(function_exists("gd_info")){
-  echo "<font color=\"#00ff00\">yes</font>";
-  $info = gd_info();
-  $keys = array_keys($info);
-  for($i=0; $i<count($keys); $i++) {
-if(is_bool($info[$keys[$i]])) echo "</li>\n<li>" . $keys[$i] .": " . yesNo($info[$keys[$i]]);
-else echo "</li>\n<li>" . $keys[$i] .": " . $info[$keys[$i]];
-  }
- } else { echo "<font color=\"#ff0000\">NO</font>"; }
- echo "</li></ul>";
-}
-function yesNo($bool){
- if($bool) return "<font color=\"#00ff00\"> yes</font>";
- else return "<font color=\"#ff0000\"> no</font>";
-}
-?>
-
-<p>If you don't see "Yes, it does." in large font above, then PHP is not enabled.</p>
+How about this password: <? generatePassword(10); ?>
 </body>
 </html>
